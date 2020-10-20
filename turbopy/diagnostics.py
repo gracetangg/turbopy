@@ -154,12 +154,12 @@ class NPYOutputUtility(OutputUtility):
     buffer_index: int
         Position in buffer.
     """
-    
+
     def __init__(self, filename, diagnostic_size, **kwargs):
         self._filename = filename
         self._buffer = np.zeros(diagnostic_size)
         self._buffer_index = 0
-    
+
     def diagnose(self, data):
         """
         Adds 'data' into npy output buffer.
@@ -170,25 +170,17 @@ class NPYOutputUtility(OutputUtility):
             1D numpy array of values to be added to the buffer.
         """
         self._append(data)
-    
+
     def finalize(self):
         """Write the npy data to file.
         """
         self._write_buffer()
-    
+
     def write_data(self):
         """Write buffer to file"""
         self._write_buffer()
-    
-    def append(self, data):
-        """Append data to the buffer.
 
-        .. deprecated::
-            `append` has been removed from the public API. Use `diagnose`
-            instead.
-        """
-        self._append(data)
-    
+
     def _append(self, data):
         """Append data to the buffer.
 
