@@ -173,6 +173,8 @@ class Simulation:
         if 'Grid' in self.input_data:
             print("Reading Grid...")
             self.read_grid_from_input()
+        else:
+            print("Initializing Gridless Simulation...")
         
         print("Initializing Simulation Clock...")
         self.read_clock_from_input()
