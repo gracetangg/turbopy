@@ -36,7 +36,7 @@ class Simulation:
 
         Expected keys are:
 
-        ``"Grid"``
+        ``"Grid"``, optional
             Dictionary containing parameters needed to define the grid.
             Currently only 1D grids are defined in turboPy.
 
@@ -170,8 +170,9 @@ class Simulation:
         Prepares the simulation by reading the input and initializing
         physics modules and diagnostics.
         """
-        print("Reading Grid...")
-        self.read_grid_from_input()
+        if 'Grid' in self.input_data:
+            print("Reading Grid...")
+            self.read_grid_from_input()
         
         print("Initializing Simulation Clock...")
         self.read_clock_from_input()
