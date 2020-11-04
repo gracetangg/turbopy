@@ -17,6 +17,7 @@ https://doi.org/10.1016/j.cpc.2020.107607
 from pathlib import Path
 from abc import ABC, abstractmethod
 import numpy as np
+import warnings
 
 
 class Simulation:
@@ -174,8 +175,9 @@ class Simulation:
             print("Reading Grid...")
             self.read_grid_from_input()
         else:
+            warnings.warn('No Grid Found.')
             print("Initializing Gridless Simulation...")
-        
+
         print("Initializing Simulation Clock...")
         self.read_clock_from_input()
 

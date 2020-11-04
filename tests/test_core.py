@@ -1,5 +1,6 @@
 """Tests for turbopy/core.py"""
 import pytest
+import warnings
 from turbopy.core import *
 
 
@@ -108,10 +109,13 @@ def test_gridless_simulation(tmp_path):
                ]
            }
            }
-    sim = Simulation(dic)
-    sim.run()
-    assert sim.clock is not None
-    assert sim.grid is None
+    with warnings.catch_warnings(record=True) as w:
+        sim = Simulation(dic)
+        sim.run()
+        assert sim.clock is not None
+        assert sim.grid is None
+        assert len(w) == 1
+        assert str(w[-1].message) == "No Grid Found."
 
 
 def test_read_clock_from_input_should_set_clock_attr_when_called(simple_sim):
